@@ -7,8 +7,6 @@ function Signup() {
   const [showPassword, setShowPassword] = useState('password');
   const [profile, setProfile] = useState({
     username: '',
-    firstname: '',
-    lastname: '',
     email: '',
     password: '',
     confirmpassword: '',
@@ -70,10 +68,8 @@ function Signup() {
     } else {
       let { username, firstname, lastname, email, password } = profile;
       axios
-        .post('https://jsonblob.com/api/jsonBlob', {
+        .post('http://localhost:5001/register', {
           username,
-          firstname,
-          lastname,
           email,
           password,
         })
@@ -81,8 +77,7 @@ function Signup() {
           alert.show(
             <div className='bg-green-500 text-white p-3 rounded-full'>
               Account created! username: {response.data.username}, firstname:{' '}
-              {response.data.firstname}, lastname {response.data.lastname},
-              email {response.data.email}
+              
             </div>
           );
         })
@@ -137,33 +132,11 @@ function Signup() {
               <label htmlFor='firstname' className='text-sm font-medium'>
                 Firstname
               </label>
-              <input
-                type='text'
-                id='firstname'
-                name='firstname'
-                value={profile.firstname}
-                required
-                className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:border-yellow-400 focus:ring-yellow-400'
-                placeholder='Enter firstname'
-                onChange={handleChange}
-              />
+            
             </div>
 
             <div>
-              <label htmlFor='lastname' className='text-sm font-medium'>
-                Lastname
-              </label>
-
-              <input
-                type='text'
-                id='lastname'
-                name='lastname'
-                value={profile.lastname}
-                required
-                className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:border-yellow-400 focus:ring-yellow-400'
-                placeholder='Enter lastname'
-                onChange={handleChange}
-              />
+             
             </div>
           </div>
 
